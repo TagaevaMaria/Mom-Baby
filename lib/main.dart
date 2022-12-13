@@ -1,9 +1,19 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mom_and_baby/widget/home_screen.dart';
+import 'package:mom_and_baby/widget/screen_fon.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends MaterialApp {
+class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: const HomeScreen(),
+    );
+  }
 }
