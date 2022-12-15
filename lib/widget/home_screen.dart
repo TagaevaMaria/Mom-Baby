@@ -1,5 +1,19 @@
 import 'package:flutter/material.dart';
 
+class HomeScreenBody extends StatefulWidget {
+  const HomeScreenBody({Key? key}) : super(key: key);
+
+  @override
+  _HomeScreenBodyState createState() => _HomeScreenBodyState();
+}
+
+class _HomeScreenBodyState extends State<HomeScreenBody> {
+  @override
+  Widget build(BuildContext context) {
+    return const HomeScreen();
+  }
+}
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -31,9 +45,9 @@ class HomeScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 30),
             child: Container(
+              child: Image.asset('assets/images/fon2.jpg'),
               height: 160,
-              width: 200,
-              color: Colors.green,
+              width: 300,
             ),
           ),
           Padding(
@@ -45,7 +59,7 @@ class HomeScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(30.0),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () => _addBaby(context),
               child: const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Text(
@@ -82,4 +96,40 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+/// Диалоговое окно ввода данных о ребенке.
+Future<void> _addBaby(BuildContext context) async {
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('Малыш'),
+        content: SingleChildScrollView(
+          child: ListBody(
+            children: const <Widget>[
+              TextField(
+                decoration: InputDecoration(label: Text('имя малыша')),
+              ),
+              TextField(
+                decoration: InputDecoration(label: Text('день рождения')),
+              ),
+              TextField(
+                decoration: InputDecoration(label: Text('время рождения')),
+              )
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            child: const Text('Ок'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
 }
