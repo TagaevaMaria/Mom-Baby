@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mom_and_baby/widget/home_screen.dart';
+
+import 'home_screen.dart';
 
 class FonScreen extends StatelessWidget {
   const FonScreen({Key? key, required HomeScreen child}) : super(key: key);

@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mom_and_baby/widget/home_screen.dart';
-import 'package:mom_and_baby/widget/screen_fon.dart';
+import 'package:mom_and_baby/ui/navigation/main_navigation.dart';
+import 'package:mom_and_baby/ui/widget/home_screen.dart';
+import 'package:mom_and_baby/ui/widget/screen_menu.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -12,8 +13,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HomeScreen(),
+    return MaterialApp(
+      routes: {
+        MainNavigatorNames.homeScreen: (context) => HomeScreen(),
+        MainNavigatorNames.screenMenu: (context) => const ScreenMenu(),
+      },
+      initialRoute: MainNavigatorNames.homeScreen,
     );
   }
 }

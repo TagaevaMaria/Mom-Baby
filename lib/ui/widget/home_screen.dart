@@ -1,28 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-class HomeScreenBody extends StatefulWidget {
-  const HomeScreenBody({Key? key}) : super(key: key);
+import '../navigation/main_navigation.dart';
 
-  @override
-  _HomeScreenBodyState createState() => _HomeScreenBodyState();
-}
-
-class _HomeScreenBodyState extends State<HomeScreenBody> {
-  @override
-  Widget build(BuildContext context) {
-    return const HomeScreen();
-  }
-}
-
+/// основная верстка экрана.
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
               fit: BoxFit.cover, image: AssetImage('assets/images/fon.jpg')),
         ),
@@ -50,33 +40,17 @@ class HomeScreen extends StatelessWidget {
               width: 300,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 100, left: 30),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: const Color.fromRGBO(255, 165, 216, 50),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30.0),
-                ),
-              ),
-              onPressed: () => _addBaby(context),
-              child: const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  "Добавить ребенка",
-                  style: TextStyle(
-                    fontSize: 20,
-                  ),
-                ),
-              ),
-            ),
+          const Padding(
+            padding: EdgeInsets.only(top: 100, left: 30),
+            child: TextFieldAddBaby(),
           ),
           const Padding(
             padding: EdgeInsets.all(10),
             child: Text('Я здесь впервые'),
           ),
           ElevatedButton(
-              onPressed: () {},
+              onPressed: () => Navigator.of(context)
+                  .pushNamed(MainNavigatorNames.screenMenu),
               child: const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Text('Войти'),
@@ -98,7 +72,33 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-/// Диалоговое окно ввода данных о ребенке.
+class TextFieldAddBaby extends StatelessWidget {
+  const TextFieldAddBaby({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        primary: const Color.fromRGBO(255, 165, 216, 50),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30.0),
+        ),
+      ),
+      onPressed: () => _addBaby(context),
+      child: const Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Text(
+          "Добавить ребенка",
+          style: TextStyle(
+            fontSize: 20,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// виджет диалоговое окно ввода данных о ребенке.
 Future<void> _addBaby(BuildContext context) async {
   return showDialog<void>(
     context: context,
@@ -108,14 +108,22 @@ Future<void> _addBaby(BuildContext context) async {
         title: const Text('Малыш'),
         content: SingleChildScrollView(
           child: ListBody(
-            children: const <Widget>[
+            children: <Widget>[
               TextField(
-                decoration: InputDecoration(label: Text('имя малыша')),
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp('[А-Яа-яЁё]'))
+                ],
+                onTap: () {},
+                onChanged: (value) => {'jj'},
+                decoration: const InputDecoration(label: Text('имя малыша')),
               ),
               TextField(
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp('[0-9]'))
+                ],
                 decoration: InputDecoration(label: Text('день рождения')),
               ),
-              TextField(
+              const TextField(
                 decoration: InputDecoration(label: Text('время рождения')),
               )
             ],
