@@ -61,6 +61,15 @@ flutter:
   assets:
     - assets/images/fon.jpg
     - assets/images/fon2.jpg
+    - assets/images/doctor.png
+    - assets/images/development.png
+    - assets/images/height_weight.png
+    - assets/images/foto.png
+    - assets/images/notes.png
+    - assets/images/allergy.png
+    - assets/images/vaccinations.png
+    - assets/images/sleep.png
+    - assets/images/victories.png
 
   # An images asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
