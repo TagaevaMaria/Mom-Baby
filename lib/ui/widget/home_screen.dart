@@ -5,7 +5,7 @@ import '../navigation/main_navigation.dart';
 
 /// основная верстка экрана.
 class HomeScreen extends StatelessWidget {
-  HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class HomeScreen extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.transparent,
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
               fit: BoxFit.cover, image: AssetImage('assets/images/fon.jpg')),
         ),
